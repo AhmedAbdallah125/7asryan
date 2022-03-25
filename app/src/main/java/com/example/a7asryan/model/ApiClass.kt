@@ -2,8 +2,8 @@ package com.example.a7asryan.model
 
 
 data class ApiClass(
-    private val status: String,
-    private val totalResults: Int,
+    private val status: String?,
+    private val totalResults: Int?,
      val articles: List<ArticleApi>?
 )
 
@@ -19,6 +19,6 @@ data class ArticleApi(
 )
 
 data class Source(
-     val id: String,
-     val name: String
+     val id: String?,
+     val name: String?
 )
