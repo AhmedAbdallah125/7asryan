@@ -3,6 +3,7 @@ package com.example.a7asryan.repository
 import android.content.Context
 import com.example.a7asryan.model.Article
 import com.example.a7asryan.model.News
+import com.example.a7asryan.model.User
 import retrofit2.Response
 
 class Repository() : IRepository {
@@ -26,11 +27,11 @@ class Repository() : IRepository {
         TODO("Not yet implemented")
     }
 
-    override suspend fun insertUser() {
+    override suspend fun insertUser(user: User) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getUser(email: String) {
+    override suspend fun getUser(email: String,password:String):Boolean{
         TODO("Not yet implemented")
     }
 
