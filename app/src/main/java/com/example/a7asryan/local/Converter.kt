@@ -1,4 +1,4 @@
-package com.example.a7asryan.locale
+package com.example.a7asryan.local
 
 import com.example.a7asryan.model.ApiClass
 import com.example.a7asryan.model.Article

@@ -1,12 +1,13 @@
 package com.example.a7asryan.repository
 
 import android.content.Context
+import com.example.a7asryan.local.LocalInterface
 import com.example.a7asryan.model.Article
 import com.example.a7asryan.model.News
 import com.example.a7asryan.model.User
 import retrofit2.Response
 
-class Repository() : IRepository {
+class Repository(val local :LocalInterface) : IRepository {
     override suspend fun getNews() {
         val response = getNewsFromRemote()
         if (response.isSuccessful) {
@@ -28,11 +29,11 @@ class Repository() : IRepository {
     }
 
     override suspend fun insertUser(user: User) {
-        TODO("Not yet implemented")
+        local.insertUser(user)
     }
 
-    override suspend fun getUser(email: String,password:String):Boolean{
-        TODO("Not yet implemented")
+    override suspend fun checkUser(email: String,password:String):Boolean{
+       return local.checkUserExistence(email,password)
     }
 
     private suspend fun getNewsFromRemote(): Response<News> {

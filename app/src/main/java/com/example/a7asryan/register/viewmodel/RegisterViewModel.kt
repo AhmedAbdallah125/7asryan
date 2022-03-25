@@ -14,7 +14,7 @@ class RegisterViewModel(private val repository: Repository) : ViewModel() {
 
     fun checkUserExistence(email: String, password: String) {
         viewModelScope.launch {
-            val response = repository.getUser(email, password)
+            val response = repository.checkUser(email, password)
             _isExistence.postValue(response)
         }
     }

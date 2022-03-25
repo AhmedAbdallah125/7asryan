@@ -30,5 +30,17 @@
         android:id="@+id/loginScreen"
         android:name="com.example.a7asryan.login.view.LoginScreen"
         android:label="fragment_login_screen"
-        tools:layout="@layout/fragment_login_screen" />
+        tools:layout="@layout/fragment_login_screen" >
+        <action
+            android:id="@+id/action_loginScreen_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_loginScreen_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.a7asryan.register.view.Register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
 </navigation>
