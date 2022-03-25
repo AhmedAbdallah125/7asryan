@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.a7asryan.R
 import com.example.a7asryan.databinding.FragmentHomeBinding
 
@@ -42,6 +43,9 @@ class HomeFragment : Fragment() {
 //        binding.textHome.setOnClickListener{
 //            Navigation.findNavController(requireView()).navigate(R.id.action_navigation_home_to_loginScreen);
 //        }
+        binding.cardView.setOnClickListener{
+            findNavController().navigate(R.id.action_navigation_home_to_loginScreen)
+        }
     }
 
     override fun onDestroyView() {

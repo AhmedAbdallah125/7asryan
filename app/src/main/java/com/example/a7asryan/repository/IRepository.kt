@@ -12,5 +12,5 @@ interface IRepository{
 
     suspend fun insertUser(user: User)
 
-    suspend fun getUser(email:String,password:String):Boolean
+    suspend fun checkUser(email:String,password:String):Boolean
 }
