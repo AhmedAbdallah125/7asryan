@@ -12,6 +12,8 @@
     <string name="back">Back</string>
     <string name="phone_number">Phone Number</string>
     <string name="user_is_exist_you_can_login">User is exist!</string>
+    <string name="login">Login</string>
+    <string name="for_the_purpose_of_security">For The purpose of Security</string>
 
 
 </resources>
