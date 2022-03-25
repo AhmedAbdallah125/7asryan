@@ -30,22 +30,22 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+//        val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+//            textView.text = it
         }
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textHome.setOnClickListener{
+//        binding.textHome.setOnClickListener{
             Navigation.findNavController(requireView()).navigate(R.id.action_navigation_home_to_loginScreen);
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-}
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
+
