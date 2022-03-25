@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ahmed engineering/ITI/Android/AndroidKotlinProject/7asryanApplication/7asryan/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.2265625" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.33" />
       </map>
     </option>
   </component>
