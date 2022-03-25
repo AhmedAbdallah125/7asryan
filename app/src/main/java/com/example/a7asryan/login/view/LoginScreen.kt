@@ -14,6 +14,7 @@ import com.example.a7asryan.databinding.FragmentLoginScreenBinding
 import com.example.a7asryan.local.ConcreteLocal
 import com.example.a7asryan.login.view.viewmodel.FactoryLoginViewModel
 import com.example.a7asryan.login.view.viewmodel.LoginViewModel
+import com.example.a7asryan.remote.RetrofitHelper
 import com.example.a7asryan.repository.Repository
 
 
@@ -22,7 +23,7 @@ class LoginScreen : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: LoginViewModel by viewModels {
-        FactoryLoginViewModel(Repository(ConcreteLocal(requireContext())))
+        FactoryLoginViewModel(Repository(ConcreteLocal(requireContext()), RetrofitHelper))
     }
 
     override fun onCreateView(

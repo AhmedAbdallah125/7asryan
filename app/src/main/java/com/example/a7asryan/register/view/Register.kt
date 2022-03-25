@@ -14,12 +14,13 @@ import com.example.a7asryan.local.ConcreteLocal
 import com.example.a7asryan.model.User
 import com.example.a7asryan.register.viewmodel.RegisterViewModel
 import com.example.a7asryan.register.viewmodel.RegisterViewModelFactory
+import com.example.a7asryan.remote.RetrofitHelper
 import com.example.a7asryan.repository.Repository
 
 class Register : Fragment() {
 
     private val registerViewModel: RegisterViewModel by viewModels {
-        RegisterViewModelFactory(Repository(ConcreteLocal(requireContext())))
+        RegisterViewModelFactory(Repository(ConcreteLocal(requireContext()),RetrofitHelper))
     }
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
