@@ -126,7 +126,7 @@ class Register : Fragment() {
                 binding.phoneNumber.requestFocus()
                 check = false
             }
-            phoneNumber.matches(Regex("(201)[0-9]{9}")) -> {
+            !phoneNumber.matches(Regex("(01)[0-9]{9}")) -> {
                 binding.phoneNumber.error = "Invalid phone number"
                 binding.phoneNumber.requestFocus()
                 check = false
