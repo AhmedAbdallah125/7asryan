@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/abdelrhman sayed/Desktop/7asryan/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1285" />
+        <entry key="..\:/Users/abdelrhman sayed/Desktop/7asryan/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1285" />
+        <entry key="..\:/Users/abdelrhman sayed/Desktop/7asryan/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1285" />
+        <entry key="..\:/Users/abdelrhman sayed/Desktop/7asryan/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/abdelrhman sayed/Desktop/7asryan/app/src/main/res/layout/home_news_row.xml" value="0.20416666666666666" />
         <entry key="..\:/ahmed engineering/ITI/Android/AndroidKotlinProject/7asryanApplication/7asryan/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
       </map>
     </option>

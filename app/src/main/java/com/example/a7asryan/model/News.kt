@@ -10,12 +10,11 @@ data class News (
 
     @PrimaryKey(autoGenerate = true)
     private val id :Int?,
-    private var isFavourite : Boolean?,
+    private var isFavourite : Boolean=false,
     private val status:String?,
     private val totalResult : String?,
     private val articles: List<Article>?
-    ){
-}
+    )
 
 data class Article(
     private val source: Source?,
@@ -26,9 +25,9 @@ data class Article(
     private val urlToImage :String?,
     private val publishedAt:String?,
     private val content :String?
-){}
+)
 
 data class Source(
-    private val id :Int?,
+    private val id :String?,
     private val name :String?
-){}
+)
