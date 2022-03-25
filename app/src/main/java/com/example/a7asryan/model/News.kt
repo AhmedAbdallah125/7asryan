@@ -10,18 +10,18 @@ data class News(
 
     @PrimaryKey(autoGenerate = true)
     private val id: Int?,
-    private val articles: List<Article>?
+     var articles: List<Article>?
 )
 
 data class Article(
-    private var isFavourite: Boolean = false,
-    private val sourceName: String?,
-    private val author: String?,
-    private val title: String?,
-    private val description: String?,
-    private val url: String?,
-    private val urlToImage: String?,
-    private val publishedAt: String?,
-    private val content: String?
+    var isFavourite: Boolean = false,
+    var sourceName: String?,
+    var  author: String?,
+    var title: String?,
+    var description: String?,
+    var url: String?,
+    var urlToImage: String?,
+    var publishedAt: String?,
+    var content: String?
 )
 
