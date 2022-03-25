@@ -1,4 +1,4 @@
-package com.example.localData
+package com.example.a7asryan.locale
 
 import android.app.Application
 import androidx.room.Database

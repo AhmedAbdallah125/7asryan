@@ -1,4 +1,4 @@
-package com.example.localData
+package com.example.a7asryan.locale
 
 import androidx.room.TypeConverter
 import com.example.a7asryan.model.Article

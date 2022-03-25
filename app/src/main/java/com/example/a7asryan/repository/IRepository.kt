@@ -1,6 +1,7 @@
 package com.example.a7asryan.repository
 
 import com.example.a7asryan.model.News
+import com.example.a7asryan.model.User
 
 interface IRepository{
     suspend fun getNews()
@@ -9,7 +10,7 @@ interface IRepository{
 
     suspend fun removeFromFavorite(news: News)
 
-    suspend fun insertUser()
+    suspend fun insertUser(user: User)
 
-    suspend fun getUser(email:String)
+    suspend fun getUser(email:String,password:String):Boolean
 }
