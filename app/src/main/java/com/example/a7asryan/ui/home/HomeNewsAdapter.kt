@@ -10,7 +10,7 @@ import com.example.a7asryan.R
 import com.example.a7asryan.databinding.HomeNewsRowBinding
 import com.example.a7asryan.model.Article
 
-class HomeNewsAdapter(val newsList: List<Article>,val context:Context) :
+class HomeNewsAdapter(var newsList: List<Article>,val context:Context) :
     RecyclerView.Adapter<HomeNewsAdapter.MyViewHolder>() {
 
     class MyViewHolder(val binding: HomeNewsRowBinding) : RecyclerView.ViewHolder(binding.root) {

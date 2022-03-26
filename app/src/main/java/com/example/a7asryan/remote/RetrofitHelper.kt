@@ -1,7 +1,6 @@
 package com.example.a7asryan.remote
 
 import com.example.a7asryan.model.ApiClass
-import com.example.a7asryan.model.News
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

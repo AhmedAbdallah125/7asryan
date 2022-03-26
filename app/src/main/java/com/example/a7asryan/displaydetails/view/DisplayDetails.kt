@@ -20,7 +20,7 @@ import com.example.a7asryan.repository.Repository
 class DisplayDetails : Fragment() {
 
     private val viewModel: DisplayDetailsViewModel by viewModels {
-        DisplayDetailsViewModelFactory(Repository(ConcreteLocal(requireContext()), RetrofitHelper))
+        DisplayDetailsViewModelFactory(Repository(ConcreteLocal(requireContext()),RetrofitHelper))
     }
     private var _binding: DisplayDetailsFragmentBinding? = null
     private val binding = _binding!!
