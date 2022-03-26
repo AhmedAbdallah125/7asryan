@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".displaydetails.view.DisplayDetails" >
+    tools:context=".displaydetails.view.DisplayDetails">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -49,6 +50,7 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_favorite"
                 app:layout_constraintStart_toEndOf="@+id/btn_back"
@@ -56,4 +58,71 @@
                 tools:text="TextView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/news_image"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+    <TextView
+        android:id="@+id/text_published_at"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/news_image"
+        app:layout_constraintEnd_toEndOf="@id/news_image"
+        android:layout_marginTop="8dp"
+        tools:text="2022-03-26T12:00:00Z"
+        />
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        tools:text="TextView" />
+
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/news_image"
+        app:layout_constraintStart_toStartOf="@id/news_image"
+        app:layout_constraintTop_toBottomOf="@id/text_published_at"
+        tools:text="Package template implements data-driven templates for generating textual output.
+To generate HTML output, see package html/template, which has the same interface as this package but automatically secures HTML output against certain attacks.
+Templates are executed by applying them to a data structure. Annotations in the template refer to elements of the data structure (typically a field of a struct or a key in a map) to control execution and derive values to be displayed. Execution of the template walks the structure and sets the cursor, represented by a period '.' and called " />
+
+    <TextView
+        android:id="@+id/text_view_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/link"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/text_description"
+        app:layout_constraintTop_toBottomOf="@id/text_description" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="#0645AD"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_link"
+        app:layout_constraintStart_toEndOf="@id/text_view_link"
+        app:layout_constraintTop_toTopOf="@id/text_view_link"
+        tools:text="www.facebook.com" />
 </androidx.constraintlayout.widget.ConstraintLayout>
