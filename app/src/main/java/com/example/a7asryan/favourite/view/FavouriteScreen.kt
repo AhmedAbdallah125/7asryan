@@ -48,6 +48,9 @@ class FavouriteScreen : Fragment() {
             //get Data
             bindFavourites(it)
         }
+        binding.backBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_favouriteScreen_to_navigation_home)
+        }
     }
 
     private fun initFavRecycler() {

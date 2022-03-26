@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_favouriteScreen_to_displayDetails"
             app:destination="@id/displayDetails" />
+        <action
+            android:id="@+id/action_favouriteScreen_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"

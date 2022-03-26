@@ -85,11 +85,12 @@ class LoginScreen : Fragment() {
     }
 
     override fun onDestroy() {
+
         super.onDestroy()
         _binding = null
     }
 
-    fun TextInputEditText.getTrimmedText(): String {
+    private fun TextInputEditText.getTrimmedText(): String {
         return this.editableText.toString().trim()
     }
 }
