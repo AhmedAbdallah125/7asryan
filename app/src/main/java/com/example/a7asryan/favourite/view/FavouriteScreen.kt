@@ -11,6 +11,7 @@ import com.example.a7asryan.databinding.FragmentFavouriteScreenBinding
 import com.example.a7asryan.favourite.viewmodel.FactoryFavouriteViewModel
 import com.example.a7asryan.favourite.viewmodel.FavouriteViewModel
 import com.example.a7asryan.local.ConcreteLocal
+import com.example.a7asryan.remote.RetrofitHelper
 import com.example.a7asryan.repository.Repository
 
 
@@ -18,7 +19,7 @@ class FavouriteScreen : Fragment() {
     private var _binding: FragmentFavouriteScreenBinding? = null
     private val binding get() = _binding!!
     private val viewModel: FavouriteViewModel by viewModels {
-        FactoryFavouriteViewModel(Repository(ConcreteLocal(requireContext())))
+        FactoryFavouriteViewModel(Repository(ConcreteLocal(requireContext()),RetrofitHelper))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
