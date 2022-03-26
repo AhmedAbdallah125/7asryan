@@ -1,7 +1,9 @@
 package com.example.a7asryan.repository
 
 import android.content.Context
+import com.example.a7asryan.local.Converter
 import com.example.a7asryan.local.LocalInterface
+import com.example.a7asryan.model.ApiClass
 import com.example.a7asryan.model.Article
 import com.example.a7asryan.model.News
 import com.example.a7asryan.model.User
@@ -14,7 +16,8 @@ class Repository(val local :LocalInterface,val remote :RemoteSource) : IReposito
         val response = getNewsFromRemote()
         if (response.isSuccessful) {
             response.body()?.let {
-                insertNewsToLocal(it)
+
+                insertNewsToLocal(Converter.fromNewsApiToEntity(it))
             }
             return getAllDataFromDatabase()
         } else {
@@ -43,7 +46,7 @@ class Repository(val local :LocalInterface,val remote :RemoteSource) : IReposito
         return  local.getAllDataFromDatabase()
     }
 
-    private suspend fun getNewsFromRemote(): Response<News> {
+    private suspend fun getNewsFromRemote(): Response<ApiClass> {
         return remote.getNews()
     }
 
