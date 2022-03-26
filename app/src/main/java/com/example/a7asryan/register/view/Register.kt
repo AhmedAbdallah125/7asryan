@@ -69,17 +69,13 @@ class Register : Fragment() {
                     }
                     RegisterResult.RegisterError -> binding.textErrorMessage.visibility =
                         View.VISIBLE
-                    RegisterResult.RegisterSuccessful -> binding.textErrorMessage.visibility =
-                        View.INVISIBLE
+                    RegisterResult.RegisterSuccessful -> findNavController().navigate(R.id.action_register_to_navigation_home)
                 }
             }
         }
 
         binding.imageBack.setOnClickListener {
             findNavController().navigate(R.id.action_register_to_loginScreen)
-        }
-        binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_register_to_navigation_home)
         }
     }
 }

@@ -40,10 +40,10 @@ class RegisterViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.checkUser(user.email, user.password)
             if (response) {
-                _registerResult.value = RegisterResult.RegisterError
+                _registerResult.postValue(RegisterResult.RegisterError)
             } else {
                 insertUser(user)
-                _registerResult.value = RegisterResult.RegisterSuccessful
+                _registerResult.postValue(RegisterResult.RegisterSuccessful)
             }
         }
     }
