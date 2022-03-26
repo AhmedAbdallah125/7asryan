@@ -25,7 +25,7 @@ class LoginViewModel(val myRepo: IRepository) : ViewModel() {
                 val response = myRepo.checkUser(email, password)
                 var loginResult: LoginResult = LoginResult.LoginFailure
                 if (response) loginResult = LoginResult.LoginSuccessful
-                _response.value = loginResult
+                _response.postValue(loginResult)
             }
         }
 
