@@ -44,6 +44,10 @@ class Repository(private val local: LocalInterface, private val remote: RemoteSo
         return local.getAllDataFromDatabase()
     }
 
+    override fun getFavouriteArticles(): Flow<List<Article>> {
+        return local.getFavouriteArticles()
+    }
+
     private suspend fun getNewsFromRemote(): Response<ApiClass> {
         return remote.getNews()
     }

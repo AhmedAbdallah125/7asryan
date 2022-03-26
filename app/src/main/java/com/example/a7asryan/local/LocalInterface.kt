@@ -9,6 +9,8 @@ interface LocalInterface {
     suspend fun checkUserExistence(email: String, password: String): Boolean
     fun getAllDataFromDatabase():  Flow<List<Article>>
     suspend fun insertNews(news: Article)
+    fun getFavouriteArticles(): Flow<List<Article>>
+
     suspend fun updateFavoriteArticle(article: Article)
     fun getArticleByUrl(url: String): Article
 }

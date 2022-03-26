@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.Flow
 interface NewsDao {
     @Insert
     suspend fun insertUser(user: User)
-
     @Insert(onConflict = REPLACE)
     suspend fun insertNews(news: Article)
 
@@ -22,6 +21,12 @@ interface NewsDao {
 
     @Query("SELECT * FROM news")
     fun getAllDataFromDatabase(): Flow<List<Article>>
+
+    @Query("SELECT * from news Where isFavourite=1")
+    fun getFavouritesArticles(): Flow<List<Article>>
+
+
+
 
     @Update
     suspend fun updateFavoriteArticle(article: Article)
