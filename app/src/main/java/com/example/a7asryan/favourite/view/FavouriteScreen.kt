@@ -1,6 +1,5 @@
 package com.example.a7asryan.favourite.view
 
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

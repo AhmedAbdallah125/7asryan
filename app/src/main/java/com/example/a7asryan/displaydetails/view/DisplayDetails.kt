@@ -23,7 +23,7 @@ class DisplayDetails : Fragment() {
         DisplayDetailsViewModelFactory(Repository(ConcreteLocal(requireContext()),RetrofitHelper))
     }
     private var _binding: DisplayDetailsFragmentBinding? = null
-    private val binding = _binding!!
+    private val binding get() = _binding!!
     private lateinit var article: Article
 
     override fun onCreateView(
