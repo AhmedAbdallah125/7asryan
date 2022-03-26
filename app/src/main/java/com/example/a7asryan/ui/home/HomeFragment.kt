@@ -10,8 +10,10 @@ import androidx.appcompat.widget.SearchView
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.a7asryan.R
 import com.example.a7asryan.databinding.FragmentHomeBinding
 import com.example.a7asryan.local.ConcreteLocal
 import com.example.a7asryan.model.Article
@@ -21,7 +23,7 @@ import com.example.a7asryan.repository.Repository
 class HomeFragment : Fragment() {
     private lateinit var adapter : HomeNewsAdapter
 
-    private lateinit var articaleList:List<Article>
+    private var articaleList:List<Article> = emptyList()
     private  var searchList : ArrayList<Article> = arrayListOf()
     private var _binding: FragmentHomeBinding? = null
      val viewModel: HomeViewModel by viewModels {
@@ -49,11 +51,14 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.homeRecycler.hasFixedSize()
 
+        adapter= HomeNewsAdapter(articaleList,requireContext(),onClick,onCardClick)
+        binding.homeRecycler.adapter =adapter
+
         viewModel.getData()
         viewModel.news.observe(viewLifecycleOwner){
             articaleList = it
-            adapter= HomeNewsAdapter(articaleList,requireContext())
-            binding.homeRecycler.adapter =adapter
+            adapter.newsList = it
+            adapter.notifyDataSetChanged()
 
         }
 
@@ -102,5 +107,15 @@ class HomeFragment : Fragment() {
         }
         adapter.newsList = searchList
         adapter.notifyDataSetChanged()
+    }
+
+    var onClick:(Article) -> Unit= {
+        viewModel.updateArticale(it)
+    }
+    var onCardClick:(String) -> Unit= {
+        val bundle = Bundle().apply {
+            putString("url",it)
+        }
+        findNavController().navigate(R.id.action_navigation_home_to_displayDetails,bundle)
     }
 }
