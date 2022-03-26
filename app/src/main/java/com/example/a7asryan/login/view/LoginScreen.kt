@@ -13,6 +13,8 @@ import com.example.a7asryan.R
 import com.example.a7asryan.databinding.FragmentLoginScreenBinding
 import com.example.a7asryan.local.ConcreteLocal
 import com.example.a7asryan.login.view.viewmodel.FactoryLoginViewModel
+import com.example.a7asryan.login.view.viewmodel.LoginError
+import com.example.a7asryan.login.view.viewmodel.LoginResult
 import com.example.a7asryan.login.view.viewmodel.LoginViewModel
 import com.example.a7asryan.repository.Repository
 
@@ -40,73 +42,43 @@ class LoginScreen : Fragment() {
             binding.txterror.visibility = View.INVISIBLE
             val email = binding.textNameEdit.editableText.toString().trim()
             val password = binding.textPassEdit.editableText.toString().trim()
-            if (checkEmail(email) && checkPassword(password)) {
-                // request from and check DB
-                viewModel.checkUser(email, password)
-                viewModel.checkResponse.observe(viewLifecycleOwner) {
-                    it.let {
-                        if (it) {
-                            //Go to Home
-                            // init SharedPreferences
-                            Toast.makeText(requireContext(), "hello Boys", Toast.LENGTH_SHORT).show()
-                            findNavController().navigate(R.id.action_loginScreen_to_navigation_home)
-                        } else {
-                            binding.txterror.visibility = View.VISIBLE
-                            Toast.makeText(
-                                requireContext(),
-                                "You should ensure password and email",
-                                Toast.LENGTH_SHORT
-                            ).show()
+            viewModel.login(email, password)
+            viewModel.loginResponse.observe(viewLifecycleOwner) { resultLogin ->
+                when (resultLogin) {
+                    is LoginResult.InvalidResult -> {
+                        when (resultLogin.loginError) {
+                            LoginError.EmailError -> {
+                                binding.textNameEdit.error = "Invalid Email"
+                                binding.textNameEdit.requestFocus()
+                            }
+                            LoginError.PasswordError -> {
+                                binding.textPassEdit.error = "Invalid Password"
+                                binding.textPassEdit.requestFocus()
+                            }
                         }
                     }
+                    LoginResult.LoginFailure -> {
+                        binding.txterror.visibility = View.VISIBLE
+                        Toast.makeText(
+                            requireContext(),
+                            "You should ensure password and email",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    LoginResult.LoginSuccessful -> {
+                        //Go to Home
+                        // init SharedPreferences
+                        findNavController().navigate(R.id.action_loginScreen_to_navigation_home)
+                    }
                 }
-            }
-        }
-        binding.btnRegisterText.setOnClickListener {
-            findNavController().navigate(R.id.action_loginScreen_to_register)
-        }
-    }
 
-    private fun checkEmail(email: String): Boolean {
-        val check: Boolean
-        when {
-            email.isEmpty() -> {
-                binding.textNameEdit.error = "You must Enter Email"
-                binding.textNameEdit.requestFocus()
-                check = false
-            }
-            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                binding.textNameEdit.error = "You must Enter Valid Email"
-                binding.textNameEdit.requestFocus()
-                check = false
-            }
-            else -> {
-                check = true
-            }
-        }
-
-        return check
-    }
+                binding.btnRegisterText.setOnClickListener {
+                    findNavController().navigate(R.id.action_loginScreen_to_register)
+                }
 
 
-    private fun checkPassword(password: String): Boolean {
-        val check: Boolean
-        when {
-            password.isEmpty() -> {
-                binding.textPassEdit.error = "Password is Required"
-                binding.textPassEdit.requestFocus()
-                check = false
-            }
-            password.length < 7 -> {
-                binding.textPassEdit.error = "Password must be at least 8 character"
-                binding.textPassEdit.requestFocus()
-                check = false
-            }
-            else -> {
-                check = true
             }
         }
-        return check
     }
 
     override fun onDestroy() {
