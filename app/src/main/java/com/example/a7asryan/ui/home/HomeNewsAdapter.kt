@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.a7asryan.R
 import com.example.a7asryan.databinding.HomeNewsRowBinding
 import com.example.a7asryan.model.Article
-import com.example.a7asryan.model.News
 
 class HomeNewsAdapter(val newsList: List<Article>,val context:Context) :
     RecyclerView.Adapter<HomeNewsAdapter.MyViewHolder>() {

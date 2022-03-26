@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
+import androidx.room.Update
 import com.example.a7asryan.model.Article
 import com.example.a7asryan.model.User
 import kotlinx.coroutines.flow.Flow
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
 interface NewsDao {
     @Insert
     suspend fun insertUser(user: User)
+
     @Insert(onConflict = REPLACE)
     suspend fun insertNews(news: Article)
 
@@ -19,5 +21,11 @@ interface NewsDao {
     suspend fun checkUserExistence(email: String, password: String): Boolean
 
     @Query("SELECT * FROM news")
-    fun getAllDataFromDatabase():  Flow<List<Article>>
+    fun getAllDataFromDatabase(): Flow<List<Article>>
+
+    @Update
+    suspend fun updateFavoriteArticle(article: Article)
+
+    @Query("SELECT * From news WHERE url=:url")
+    fun getArticleByUrl(url: String): Article
 }

@@ -24,4 +24,12 @@ class ConcreteLocal (
     override suspend fun insertNews(article: Article) {
         newsDao.insertNews(article)
     }
+
+    override suspend fun updateFavoriteArticle(article: Article) {
+        newsDao.updateFavoriteArticle(article)
+    }
+
+    override fun getArticleByUrl(url: String): Article {
+        return newsDao.getArticleByUrl(url)
+    }
 }

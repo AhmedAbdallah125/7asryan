@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_loginScreen"
             app:destination="@id/loginScreen" />
+        <action
+            android:id="@+id/action_navigation_home_to_displayDetails"
+            app:destination="@id/displayDetails" />
     </fragment>
 
     <fragment
@@ -49,5 +52,23 @@
         <action
             android:id="@+id/action_register_to_navigation_home"
             app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayDetails"
+        android:name="com.example.a7asryan.displaydetails.view.DisplayDetails"
+        android:label="display_details_fragment"
+        tools:layout="@layout/display_details_fragment" >
+        <action
+            android:id="@+id/action_displayDetails_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteScreen"
+        android:name="com.example.a7asryan.favourite.view.FavouriteScreen"
+        android:label="fragment_favourite_screen"
+        tools:layout="@layout/fragment_favourite_screen" >
+        <action
+            android:id="@+id/action_favouriteScreen_to_displayDetails"
+            app:destination="@id/displayDetails" />
     </fragment>
 </navigation>

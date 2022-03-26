@@ -9,13 +9,14 @@ import com.example.a7asryan.remote.RemoteSource
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
-class Repository(val local :LocalInterface,val remote :RemoteSource) : IRepository {
-    override suspend fun getNews() : Flow<List<Article>>{
+class Repository(private val local: LocalInterface, private val remote: RemoteSource) :
+    IRepository {
+    override suspend fun getNews(): Flow<List<Article>> {
         val response = getNewsFromRemote()
         if (response.isSuccessful) {
             response.body()?.articles?.let {
 
-                for(article in it){
+                for (article in it) {
                     insertNewsToLocal(Converter.converArticaleToEntity(article))
                 }
 
@@ -27,24 +28,20 @@ class Repository(val local :LocalInterface,val remote :RemoteSource) : IReposito
 
     }
 
-    override suspend fun addToFavorite(news: Article) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun removeFromFavorite(news: Article) {
-        TODO("Not yet implemented")
+    override suspend fun updateFavoriteArticle(article: Article) {
+        local.updateFavoriteArticle(article)
     }
 
     override suspend fun insertUser(user: User) {
         local.insertUser(user)
     }
 
-    override suspend fun checkUser(email: String,password:String):Boolean{
-       return local.checkUserExistence(email,password)
+    override suspend fun checkUser(email: String, password: String): Boolean {
+        return local.checkUserExistence(email, password)
     }
 
-    override fun getAllDataFromDatabase():  Flow<List<Article>> {
-        return  local.getAllDataFromDatabase()
+    override fun getAllDataFromDatabase(): Flow<List<Article>> {
+        return local.getAllDataFromDatabase()
     }
 
     private suspend fun getNewsFromRemote(): Response<ApiClass> {
@@ -55,5 +52,7 @@ class Repository(val local :LocalInterface,val remote :RemoteSource) : IReposito
         local.insertNews(article)
     }
 
-
+    override fun getArticleByUrl(url: String): Article {
+        return local.getArticleByUrl(url)
+    }
 }

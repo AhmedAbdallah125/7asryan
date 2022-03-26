@@ -117,6 +117,7 @@ Templates are executed by applying them to a data structure. Annotations in the 
         app:layout_constraintTop_toBottomOf="@id/text_description" />
 
     <TextView
+        android:id="@+id/text_link"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
