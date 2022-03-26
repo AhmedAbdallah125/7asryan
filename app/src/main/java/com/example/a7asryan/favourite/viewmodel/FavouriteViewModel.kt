@@ -7,18 +7,24 @@ import androidx.lifecycle.viewModelScope
 import com.example.a7asryan.model.Article
 import com.example.a7asryan.repository.IRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class FavouriteViewModel(private val myRepo: IRepository) : ViewModel() {
-    private val _favourites: MutableLiveData<List<Article>> = MutableLiveData()
-    val favourites: LiveData<List<Article>> get() = _favourites
+    private val _favourites: MutableLiveData<FavouriteResult> = MutableLiveData()
+    val favourites: LiveData<FavouriteResult> get() = _favourites
     fun getFavourites() {
+        _favourites.postValue(FavouriteResult.Loading)
         viewModelScope.launch(Dispatchers.IO) {
+            delay(2000)
             myRepo.getFavouriteArticles().collect {
-                it.let {
-                    _favourites.postValue(it)
-                }
+
+                    if (it.isEmpty()) {
+                        _favourites.postValue(FavouriteResult.Empty)
+                    } else
+                        _favourites.postValue(FavouriteResult.Success(it))
+
             }
         }
     }
@@ -31,4 +37,12 @@ class FavouriteViewModel(private val myRepo: IRepository) : ViewModel() {
             myRepo.updateFavoriteArticle(article)
         }
     }
+}
+
+sealed class FavouriteResult {
+    object Loading : FavouriteResult()
+    object ErrorResult : FavouriteResult()
+    object Empty : FavouriteResult()
+    data class Success(val articles: List<Article>) : FavouriteResult()
+
 }
