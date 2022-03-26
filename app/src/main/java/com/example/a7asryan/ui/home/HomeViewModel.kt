@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a7asryan.model.Article
-import com.example.a7asryan.model.News
 import com.example.a7asryan.repository.IRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -20,7 +18,7 @@ class HomeViewModel(private val repo: IRepository) : ViewModel() {
         viewModelScope.launch() {
             repo.getNews().collect {
 
-                it.articles.let {i-> _news.postValue(i) }
+                it.let {i-> _news.postValue(i) }
             }
         }
     }
