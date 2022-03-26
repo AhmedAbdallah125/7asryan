@@ -1,23 +1,24 @@
 package com.example.a7asryan.repository
 
-import android.content.Context
 import com.example.a7asryan.local.Converter
 import com.example.a7asryan.local.LocalInterface
 import com.example.a7asryan.model.ApiClass
 import com.example.a7asryan.model.Article
-import com.example.a7asryan.model.News
 import com.example.a7asryan.model.User
 import com.example.a7asryan.remote.RemoteSource
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 class Repository(val local :LocalInterface,val remote :RemoteSource) : IRepository {
-    override suspend fun getNews() :Flow<News>{
+    override suspend fun getNews() : Flow<List<Article>>{
         val response = getNewsFromRemote()
         if (response.isSuccessful) {
-            response.body()?.let {
+            response.body()?.articles?.let {
 
-                insertNewsToLocal(Converter.fromNewsApiToEntity(it))
+                for(article in it){
+                    insertNewsToLocal(Converter.converArticaleToEntity(article))
+                }
+
             }
             return getAllDataFromDatabase()
         } else {
@@ -26,11 +27,11 @@ class Repository(val local :LocalInterface,val remote :RemoteSource) : IReposito
 
     }
 
-    override suspend fun addToFavorite(news: News) {
+    override suspend fun addToFavorite(news: Article) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun removeFromFavorite(news: News) {
+    override suspend fun removeFromFavorite(news: Article) {
         TODO("Not yet implemented")
     }
 
@@ -42,7 +43,7 @@ class Repository(val local :LocalInterface,val remote :RemoteSource) : IReposito
        return local.checkUserExistence(email,password)
     }
 
-    override fun getAllDataFromDatabase(): Flow<News> {
+    override fun getAllDataFromDatabase():  Flow<List<Article>> {
         return  local.getAllDataFromDatabase()
     }
 
@@ -50,8 +51,8 @@ class Repository(val local :LocalInterface,val remote :RemoteSource) : IReposito
         return remote.getNews()
     }
 
-    private suspend fun insertNewsToLocal(news: News) {
-        local.insertNews(news)
+    private suspend fun insertNewsToLocal(article: Article) {
+        local.insertNews(article)
     }
 
 

@@ -1,7 +1,7 @@
 package com.example.a7asryan.local
 
 import android.content.Context
-import com.example.a7asryan.model.News
+import com.example.a7asryan.model.Article
 import com.example.a7asryan.model.User
 import kotlinx.coroutines.flow.Flow
 
@@ -17,11 +17,11 @@ class ConcreteLocal (
        return newsDao.checkUserExistence(email, password)
     }
 
-    override fun getAllDataFromDatabase(): Flow<News> {
+    override fun getAllDataFromDatabase(): Flow<List<Article>> {
         return newsDao.getAllDataFromDatabase()
     }
 
-    override suspend fun insertNews(news: News) {
-        newsDao.insertNews(news)
+    override suspend fun insertNews(article: Article) {
+        newsDao.insertNews(article)
     }
 }
