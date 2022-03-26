@@ -12,12 +12,13 @@ import com.example.a7asryan.databinding.DisplayDetailsFragmentBinding
 import com.example.a7asryan.displaydetails.viewmodel.DisplayDetailsViewModel
 import com.example.a7asryan.displaydetails.viewmodel.DisplayDetailsViewModelFactory
 import com.example.a7asryan.local.ConcreteLocal
+import com.example.a7asryan.remote.RetrofitHelper
 import com.example.a7asryan.repository.Repository
 
 class DisplayDetails : Fragment() {
 
     private val viewModel: DisplayDetailsViewModel by viewModels {
-        DisplayDetailsViewModelFactory(Repository(ConcreteLocal(requireContext())))
+        DisplayDetailsViewModelFactory(Repository(ConcreteLocal(requireContext()),RetrofitHelper))
     }
     private lateinit var _binding: DisplayDetailsFragmentBinding
     private val binding = _binding

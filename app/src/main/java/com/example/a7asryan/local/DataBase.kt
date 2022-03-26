@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.a7asryan.model.News
+import com.example.a7asryan.model.Article
 import com.example.a7asryan.model.User
 
-@Database(entities = [News::class, User::class], version = 1, exportSchema = false)
+@Database(entities = [Article::class, User::class], version = 1, exportSchema = false)
 @TypeConverters(RoomConverter::class)
 abstract class DataBase : RoomDatabase() {
     abstract fun newsDao(): NewsDao
