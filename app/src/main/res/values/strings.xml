@@ -16,6 +16,7 @@
     <string name="for_the_purpose_of_security">For The purpose of Security</string>
     <string name="link">Link:</string>
     <string name="favorites">Favorites</string>
+    <string name="shared_pref">com.example.a7asryan.ama</string>
 
 
 </resources>

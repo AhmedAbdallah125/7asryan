@@ -16,6 +16,7 @@ import com.example.a7asryan.login.view.viewmodel.FactoryLoginViewModel
 import com.example.a7asryan.login.view.viewmodel.LoginError
 import com.example.a7asryan.login.view.viewmodel.LoginResult
 import com.example.a7asryan.login.view.viewmodel.LoginViewModel
+import com.example.a7asryan.model.updateLoginInSharedPreference
 import com.example.a7asryan.remote.RetrofitHelper
 import com.example.a7asryan.repository.Repository
 import com.google.android.material.textfield.TextInputEditText
@@ -69,7 +70,7 @@ class LoginScreen : Fragment() {
                     }
                     LoginResult.LoginSuccessful -> {
                         //Go to Home
-                        // init SharedPreferences
+                        updateLoginInSharedPreference(requireContext(), true)
                         findNavController().navigate(R.id.action_loginScreen_to_navigation_home)
                     }
                 }
