@@ -29,7 +29,9 @@ class FavouriteAdapter(
     }
 
     override fun onBindViewHolder(holder: FavouriteAdapter.ViewHolder, position: Int) {
-        holder.binding.txtFavourite.text = articles[position].title!!
+        articles[position].title.let {
+            holder.binding.txtFavourite.text = it ?: ""
+        }
         holder.binding.favCardLayout.setOnClickListener {
             onClick(articles[position].url)
         }
