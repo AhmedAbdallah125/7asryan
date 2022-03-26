@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/loginScreen">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -42,5 +42,12 @@
         android:id="@+id/register"
         android:name="com.example.a7asryan.register.view.Register"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_to_loginScreen"
+            app:destination="@id/loginScreen" />
+        <action
+            android:id="@+id/action_register_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>
