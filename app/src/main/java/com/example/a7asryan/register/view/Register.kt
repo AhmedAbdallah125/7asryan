@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.a7asryan.R
 import com.example.a7asryan.databinding.FragmentRegisterBinding
 import com.example.a7asryan.local.ConcreteLocal
 import com.example.a7asryan.model.User
@@ -36,6 +38,7 @@ class Register : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnRegister.setOnClickListener {
+            binding.textErrorMessage.visibility = View.INVISIBLE
             val userName = binding.userName.getTrimmedText()
             val email = binding.email.getTrimmedText()
             val password = binding.password.getTrimmedText()
@@ -69,6 +72,13 @@ class Register : Fragment() {
                         View.INVISIBLE
                 }
             }
+        }
+
+        binding.imageBack.setOnClickListener {
+            findNavController().navigate(R.id.action_register_to_loginScreen)
+        }
+        binding.btnRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_register_to_navigation_home)
         }
     }
 }
