@@ -17,6 +17,7 @@ import com.example.a7asryan.login.view.viewmodel.LoginError
 import com.example.a7asryan.login.view.viewmodel.LoginResult
 import com.example.a7asryan.login.view.viewmodel.LoginViewModel
 import com.example.a7asryan.repository.Repository
+import com.google.android.material.textfield.TextInputEditText
 
 
 class LoginScreen : Fragment() {
@@ -40,8 +41,8 @@ class LoginScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnLogin.setOnClickListener {
             binding.txterror.visibility = View.INVISIBLE
-            val email = binding.textNameEdit.editableText.toString().trim()
-            val password = binding.textPassEdit.editableText.toString().trim()
+            val email = binding.textNameEdit.getTrimmedText()
+            val password = binding.textPassEdit.getTrimmedText()
             viewModel.login(email, password)
             viewModel.loginResponse.observe(viewLifecycleOwner) { resultLogin ->
                 when (resultLogin) {
@@ -84,5 +85,9 @@ class LoginScreen : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    fun TextInputEditText.getTrimmedText(): String {
+        return this.editableText.toString().trim()
     }
 }

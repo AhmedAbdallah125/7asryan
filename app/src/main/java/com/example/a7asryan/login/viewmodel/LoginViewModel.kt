@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a7asryan.repository.IRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel(val myRepo: IRepository) : ViewModel() {
@@ -20,7 +21,7 @@ class LoginViewModel(val myRepo: IRepository) : ViewModel() {
         } else if (!isValidPassword(password)) {
             _response.value = LoginResult.InvalidResult(LoginError.PasswordError)
         } else {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 val response = myRepo.checkUser(email, password)
                 var loginResult: LoginResult = LoginResult.LoginFailure
                 if (response) loginResult = LoginResult.LoginSuccessful
