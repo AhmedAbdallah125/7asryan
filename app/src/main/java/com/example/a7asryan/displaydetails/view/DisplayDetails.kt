@@ -22,8 +22,8 @@ class DisplayDetails : Fragment() {
     private val viewModel: DisplayDetailsViewModel by viewModels {
         DisplayDetailsViewModelFactory(Repository(ConcreteLocal(requireContext()), RetrofitHelper))
     }
-    private lateinit var _binding: DisplayDetailsFragmentBinding
-    private val binding = _binding
+    private var _binding: DisplayDetailsFragmentBinding? = null
+    private val binding = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +67,11 @@ class DisplayDetails : Fragment() {
         } else {
             binding.btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
