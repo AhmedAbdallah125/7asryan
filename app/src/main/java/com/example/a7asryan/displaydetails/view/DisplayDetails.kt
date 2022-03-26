@@ -24,6 +24,7 @@ class DisplayDetails : Fragment() {
     }
     private var _binding: DisplayDetailsFragmentBinding? = null
     private val binding = _binding!!
+    private lateinit var article: Article
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,19 +36,24 @@ class DisplayDetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         requireArguments().getString("url")?.let { url ->
             viewModel.getArticle(url)
         }
-        viewModel.articleResponse.observe(viewLifecycleOwner) { article ->
+
+        viewModel.articleResponse.observe(viewLifecycleOwner) { a ->
+            article = a
             bindData(article)
-            binding.btnFavorite.setOnClickListener {
-                article.isFavourite = !article.isFavourite
-                setFavoriteIcon(article.isFavourite)
-                viewModel.updateFavoriteArticle(article)
-            }
-            binding.btnBack.setOnClickListener {
-                findNavController().navigate(R.id.action_displayDetails_to_navigation_home)
-            }
+        }
+
+        binding.btnFavorite.setOnClickListener {
+            article.isFavourite = !article.isFavourite
+            setFavoriteIcon(article.isFavourite)
+            viewModel.updateFavoriteArticle(article)
+        }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_displayDetails_to_navigation_home)
         }
     }
 
