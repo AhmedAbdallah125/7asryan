@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a7asryan.R
 import com.example.a7asryan.databinding.FragmentFavouriteScreenBinding
 import com.example.a7asryan.favourite.viewmodel.FactoryFavouriteViewModel
+import com.example.a7asryan.favourite.viewmodel.FavouriteResult
 import com.example.a7asryan.favourite.viewmodel.FavouriteViewModel
 import com.example.a7asryan.local.ConcreteLocal
 import com.example.a7asryan.model.Article
@@ -43,10 +44,32 @@ class FavouriteScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.getFavourites()
-        viewModel.favourites.observe(viewLifecycleOwner) {
-            //get Data
-            bindFavourites(it)
+        viewModel.favourites.observe(viewLifecycleOwner) { favouriteResult ->
+            when (favouriteResult) {
+                FavouriteResult.Empty -> {
+                    binding.animationView.setAnimation(R.raw.favorite)
+                    binding.animationView.visibility = View.VISIBLE
+                    binding.favRecycler.visibility = View.INVISIBLE
+                }
+                FavouriteResult.ErrorResult -> TODO()
+                FavouriteResult.Loading -> {
+                    binding.animationView.setAnimation(R.raw.loading)
+                    binding.animationView.visibility = View.VISIBLE
+                    binding.favRecycler.visibility = View.INVISIBLE
+                }
+                is FavouriteResult.Success -> {
+                    binding.animationView.visibility = View.INVISIBLE
+                    binding.favRecycler.visibility = View.VISIBLE
+                    bindFavourites(favouriteResult.articles)
+                }
+            }
+
         }
     }
 
@@ -60,10 +83,10 @@ class FavouriteScreen : Fragment() {
         }
     }
 
-    var onDelete: (Article) -> Unit = {
+    private var onDelete: (Article) -> Unit = {
         viewModel.removeFavourite(it)
     }
-    var onClick: (String) -> Unit = { url ->
+    private var onClick: (String) -> Unit = { url ->
         val bundle = Bundle().apply {
             putString("url", url)
         }

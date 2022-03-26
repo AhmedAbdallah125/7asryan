@@ -74,12 +74,9 @@ class LoginScreen : Fragment() {
                         findNavController().navigate(R.id.action_loginScreen_to_navigation_home)
                     }
                 }
-
-                binding.btnRegisterText.setOnClickListener {
-                    findNavController().navigate(R.id.action_loginScreen_to_register)
-                }
-
-
+            }
+            binding.btnRegisterText.setOnClickListener {
+                findNavController().navigate(R.id.action_loginScreen_to_register)
             }
         }
     }
