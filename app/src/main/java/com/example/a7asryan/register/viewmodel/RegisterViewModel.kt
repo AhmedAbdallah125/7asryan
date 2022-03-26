@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a7asryan.model.User
 import com.example.a7asryan.repository.Repository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(private val repository: Repository) : ViewModel() {
@@ -36,7 +37,7 @@ class RegisterViewModel(private val repository: Repository) : ViewModel() {
     }
 
     private fun checkUserExistence(user: User) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = repository.checkUser(user.email, user.password)
             if (response) {
                 _registerResult.value = RegisterResult.RegisterError
