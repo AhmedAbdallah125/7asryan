@@ -8,14 +8,14 @@ import com.example.a7asryan.model.News
 class Converter {
     fun fromNewsApiToEntity(news: ApiClass): News {
         val articlesApi = news.articles
-        var entitiesAriticales: ArrayList<Article> = arrayListOf()
+        var entitiesArticales: ArrayList<Article> = arrayListOf()
 
-        if (articlesApi != null) {
-            for (aricaleApi: ArticleApi in articlesApi) {
-                converArticaleToEntity(aricaleApi)?.let { entitiesAriticales.add(it) }
+        articlesApi?.let {articlesApiList->
+            for(articaleApi in articlesApiList) {
+                converArticaleToEntity(articaleApi).let { entitiesArticales.add(it) }
             }
         }
-        return News(articles = entitiesAriticales)
+        return News(articles = entitiesArticales)
     }
 
     fun converArticaleToEntity(aricaleApi: ArticleApi): Article {
