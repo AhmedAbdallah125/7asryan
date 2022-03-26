@@ -39,18 +39,16 @@ class RegisterViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             val response = repository.checkUser(user.email, user.password)
             if (response) {
-                _registerResult.value =RegisterResult.RegisterError
+                _registerResult.value = RegisterResult.RegisterError
             } else {
                 insertUser(user)
-                _registerResult.value =RegisterResult.RegisterSuccessful
+                _registerResult.value = RegisterResult.RegisterSuccessful
             }
         }
     }
 
-    private fun insertUser(user: User) {
-        viewModelScope.launch {
-            repository.insertUser(user)
-        }
+    private suspend fun insertUser(user: User) {
+        repository.insertUser(user)
     }
 
     private fun isEmailInvalid(email: String): Boolean {

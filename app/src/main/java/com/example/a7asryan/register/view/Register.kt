@@ -14,6 +14,7 @@ import com.example.a7asryan.register.viewmodel.RegisterResult
 import com.example.a7asryan.register.viewmodel.RegisterViewModel
 import com.example.a7asryan.register.viewmodel.RegisterViewModelFactory
 import com.example.a7asryan.repository.Repository
+import com.google.android.material.textfield.TextInputEditText
 
 class Register : Fragment() {
 
@@ -35,10 +36,10 @@ class Register : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnRegister.setOnClickListener {
-            val userName = binding.userName.editableText.toString().trim()
-            val email = binding.email.editableText.toString().trim()
-            val password = binding.password.editableText.toString().trim()
-            val phoneNumber = binding.phoneNumber.editableText.toString().trim()
+            val userName = binding.userName.getTrimmedText()
+            val email = binding.email.getTrimmedText()
+            val password = binding.password.getTrimmedText()
+            val phoneNumber = binding.phoneNumber.getTrimmedText()
             registerViewModel.registerUser(email, password, userName, phoneNumber)
             registerViewModel.registerResult.observe(viewLifecycleOwner) { result ->
                 when (result) {
@@ -70,4 +71,8 @@ class Register : Fragment() {
             }
         }
     }
+}
+
+fun TextInputEditText.getTrimmedText(): String {
+    return this.editableText.toString().trim()
 }
