@@ -1,7 +1,6 @@
 package com.example.a7asryan.model
 
-import android.icu.text.CaseMap
-import android.widget.HeaderViewListAdapter
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -14,7 +13,7 @@ data class Article(
     var title: String?,
     var description: String?,
     @PrimaryKey
-    var url: String ="",
+    var url: String ,
     var urlToImage: String?,
     var publishedAt: String?,
     var content: String?
