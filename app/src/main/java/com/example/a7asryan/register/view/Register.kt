@@ -83,6 +83,6 @@ class Register : Fragment() {
     }
 }
 
-fun TextInputEditText.getTrimmedText(): String {
+private fun TextInputEditText.getTrimmedText(): String {
     return this.editableText.toString().trim()
 }
